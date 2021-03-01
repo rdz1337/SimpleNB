@@ -1,6 +1,3 @@
-NUKE BOT
-
-
 ##Made By @rdz1337 on github & rdz、#0999 On Discord
 import discord
 from discord.ext import commands
